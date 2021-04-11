@@ -17,5 +17,6 @@
     "@babel/preset-typescript": "^7.13.0",
     "@types/jest": "^26.0.22",
     "typescript": "^4.0.3"
-  }
+  },
+  "gitHead": "f22644971af00efbf84b1471652f72e4728af27a"
 }

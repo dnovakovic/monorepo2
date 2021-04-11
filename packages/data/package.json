@@ -25,5 +25,6 @@
   "dependencies": {
     "@shlack/types": "^0.0.3",
     "@shlack/utils": "^0.0.3"
-  }
+  },
+  "gitHead": "f22644971af00efbf84b1471652f72e4728af27a"
 }
