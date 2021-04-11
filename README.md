@@ -24,7 +24,15 @@ After yarn dev console should output
 ```
 Listening on http://localhost:1234
 ```
+## NPM registry
+In order to publish (and reuse) packages in this monorepo same should be published into npm registry. To play role of npm registry we can make use of verdaccio (private npm proxy registry).
 
+Simply run dockerized version of verdaccio. 
+```
+docker run -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio
+```
 
-
-
+After this registry should be available on following url
+```
+http://localhost:4873/
+```
