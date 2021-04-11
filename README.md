@@ -43,8 +43,25 @@ In order to see list of packages available for publishing use
 yarn lerna changed
 ```
 
+In order to publish one must first create user and login to npm registry (in this case verdaccio)
+```
+npm adduser --registry http://localhost:4873/
+```
+
 Initially packages all packages can be published with
 ```
 yarn lerna publish --registry=http://localhost:4873/
 ```
-This will present menu where user can pick exactly how version of the packages should be bumped (increased). Packages will then appear in the repository under new version number. 
+This will present menu where user can pick exactly how version of the packages should be bumped (increased). Packages will then appear in the npm registry under new version number. 
+
+## Flow of package development
+In everyday activities new code will be checked in some of the packages. Given what package is updated, dependent packages will also be listed as changed. 
+```
+yarn lerna changed
+```
+
+Version of changed packages can be bumped and packages published into repository with the same lerna publish command
+```
+yarn lerna publish --registry=http://localhost:4873/
+```
+
