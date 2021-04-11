@@ -36,3 +36,15 @@ After this registry should be available on following url
 ```
 http://localhost:4873/
 ```
+
+## Publishing with lerna
+In order to see list of packages available for publishing use
+```
+yarn lerna changed
+```
+
+Initially packages all packages can be published with
+```
+yarn lerna publish --registry=http://localhost:4873/
+```
+This will present menu where user can pick exactly how version of the packages should be bumped (increased). Packages will then appear in the repository under new version number. 
