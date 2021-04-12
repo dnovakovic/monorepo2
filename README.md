@@ -27,9 +27,9 @@ Listening on http://localhost:1234
 ## NPM registry
 In order to publish (and reuse) packages in this monorepo same should be published into npm registry. To play role of npm registry we can make use of verdaccio (private npm proxy registry).
 
-Simply run dockerized version of verdaccio. 
+Simply run dockerized version of verdaccio. Note: this version of ```docker run``` will pass customized configuration file for verdaccio in order to increase maximum size of package that can be uploaded to registry
 ```
-docker run -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio
+docker run -it --name verdaccio -p 4873:4873 -v $(pwd)/conf/verdaccio:/verdaccio/conf verdaccio/verdaccio
 ```
 
 After this registry should be available on following url
@@ -43,7 +43,7 @@ In order to see list of packages available for publishing use
 yarn lerna changed
 ```
 
-In order to publish one must first create user and login to npm registry (in this case verdaccio)
+In order to publish one must first create user and login to npm registry (in this case, verdaccio)
 ```
 npm adduser --registry http://localhost:4873/
 ```
@@ -52,7 +52,8 @@ Initially packages all packages can be published with
 ```
 yarn lerna publish --registry=http://localhost:4873/
 ```
-This will present menu where user can pick exactly how version of the packages should be bumped (increased). Packages will then appear in the npm registry under new version number. 
+
+This form of ```yarn lerna publish``` will present menu where one can pick exactly how version of the packages should be bumped (increased). Packages will then appear in the npm registry under new version number. 
 
 ## Flow of package development
 In everyday activities new code will be checked in some of the packages. Given what package is updated, dependent packages will also be listed as changed. 
@@ -65,3 +66,7 @@ Version of changed packages can be bumped and packages published into repository
 yarn lerna publish --registry=http://localhost:4873/
 ```
 
+Or if you'd like to avoid answering all confirmation questions about what and if to publish and simply publish patched version of the package
+```
+yarn lerna publish patch --registry=http://localhost:4873/ --yes
+```
